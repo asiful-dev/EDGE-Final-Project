@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-// import { Player } from "@lottiefiles/react-lottie-player";
+import React, { useEffect, useState } from "react";
+
 import Lottie from "lottie-react";
 import emoji from "../../assets/Animations/Animation - 1734769346473.json";
 import alien from "../../assets/Animations/Animation - 1734770717203.json";
@@ -38,6 +38,14 @@ function Banner() {
   const goToSlide = (idx) => {
     setIdx(idx);
   };
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIdx((prevIdx) => (prevIdx + 1) % slides.length); 
+    }, 3000); 
+
+    return () => clearInterval(interval); 
+  }, []);
   return (
     <>
       <div className="banner px-8 flex flex-col gap-6 md:flex-row justify-between items-center ">
