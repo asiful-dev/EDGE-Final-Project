@@ -7,7 +7,7 @@ export default function Navbar() {
     setDropDown(!dropDown);
   };
   return (
-    <nav className="nav-container p-6 flex justify-between items-center relative">
+    <nav className="nav-container p-6 px-8 flex justify-between items-center relative">
       <div className="logo flex items-center">
         <div className="logo-img w-16">
           <img src="/src/assets/Images/logo-removebg-preview.png" alt="" />
