@@ -1,13 +1,13 @@
 import './App.css'
-import Banner from './components/Banner/Banner'
-import Navbar from './components/Navbar/Navbar'
+import Home from './components/Home/Home'
+// import JokeCard from './components/JokeCard/JokeCard'
+
 function App() {
 
 
   return (
     <>
-    <Navbar></Navbar>
-    <Banner></Banner>
+    
     </>
   )
 }
