@@ -15,6 +15,14 @@ export default {
       animation: {
         underline: 'underline 0.3s ease-in-out forwards',
       },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(90deg, rgba(180,80,58,1) 0%, rgba(253,80,29,1) 50%, rgba(252,176,69,1) 100%)',
+        'custom-gradient-hover': 'linear-gradient(90deg, rgba(200, 200, 200, 1) 0%, rgba(169, 169, 169, 1) 50%, rgba(120, 120, 120, 1) 100%)',
+
+      },
+      borderImage: {
+        'custom-gradient': 'linear-gradient(90deg, rgba(180,80,58,1) 0%, rgba(253,80,29,1) 50%, rgba(252,176,69,1) 100%)',
+      },
     },
   },
   plugins: [
@@ -35,6 +43,15 @@ export default {
         },
         '.smooth-underline:hover::after': {
           width: '100%',
+        },
+      });
+    },
+    function ({ addUtilities, theme }) {
+      addUtilities({
+        '.border-custom-gradient': {
+          borderStyle: 'solid',
+          borderWidth: '2px',
+          borderImage: theme('backgroundImage.custom-gradient') + ' 1',
         },
       });
     },
