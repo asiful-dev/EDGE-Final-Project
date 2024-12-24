@@ -170,7 +170,7 @@ export const JokeData = [
       ],
     },
     {
-      category: "Java Jokes",
+      category: "Java jokes",
       jokes: [
         "Why was the Java developer always so broke? He lost his class.",
         "What’s Java’s favorite type of music? Garbage collection.",
