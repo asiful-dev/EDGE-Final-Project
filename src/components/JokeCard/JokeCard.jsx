@@ -94,7 +94,7 @@ function JokeCard() {
 
   return (
     <div className="joke-container my-[3rem] flex flex-col items-center gap-6 mx-6">
-      <div className="btn-container flex gap-4 mb-10">
+      <div className="btn-container flex flex-col gap-4 mb-10 md:flex-row">
         <button
           onClick={() => fetchJoke("single")}
           className="btn bg-custom-gradient text-white font-semibold px-6 py-3 rounded-lg text-[1.5rem] transition-all duration-500 hover:bg-custom-gradient-hover hover:scale-105"

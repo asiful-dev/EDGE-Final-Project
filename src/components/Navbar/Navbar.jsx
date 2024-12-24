@@ -17,7 +17,7 @@ export default function Navbar() {
         </h2>
       </div>
 
-      <ul className="nav-links font-semibold text-[1.25rem] hidden md:flex md:gap-x-4">
+      <ul className="nav-links font-semibold text-[1.25rem] hidden md:flex md:gap-x-4 md:items-center">
       <input type="checkbox" value="night" className="toggle theme-controller" />
         <li>
           <Link to={"/"} className="smooth-underline">
