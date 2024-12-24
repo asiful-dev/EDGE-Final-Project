@@ -12,17 +12,27 @@ export default function Navbar() {
         <div className="logo-img w-16">
           <img src="/src/assets/Images/logo-removebg-preview.png" alt="" />
         </div>
-        <h2 className="font-semibold text-[1.5rem] text-gray-500">
+        <h2 className="font-semibold text-[1.5rem] text-gray-400">
           jokes<span className="font-bold text-orange-400"> overflow</span>
         </h2>
       </div>
 
       <ul className="nav-links font-semibold text-[1.25rem] hidden md:flex md:gap-x-4">
+      <input type="checkbox" value="night" className="toggle theme-controller" />
         <li>
-         <Link to={'/'} className="smooth-underline">Home</Link>
+          <Link to={"/"} className="smooth-underline">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to={'/favourites'} className="smooth-underline">Favourites</Link>
+          <Link to={"/favourites"} className="smooth-underline">
+            Favourites
+          </Link>
+        </li>
+        <li>
+          <Link to={"/gifs"} className="smooth-underline">
+            Gifs
+          </Link>
         </li>
       </ul>
       <FaBars
@@ -38,12 +48,20 @@ export default function Navbar() {
         >
           <ul className="flex flex-col gap-y-2">
             <li>
-            <Link to={'/'} className="smooth-underline">Home</Link>
+              <Link to={"/"} className="smooth-underline">
+                Home
+              </Link>
             </li>
             <li>
-            <Link to={'/favourites'} className="smooth-underline">Favourites</Link>
+              <Link to={"/favourites"} className="smooth-underline">
+                Favourites
+              </Link>
             </li>
-           
+            <li>
+              <Link to={"/gifs"} className="smooth-underline">
+                Gifs
+              </Link>
+            </li>
           </ul>
         </div>
       )}
