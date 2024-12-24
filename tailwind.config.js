@@ -1,8 +1,11 @@
+
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    
   ],
   theme: {
     extend: {
@@ -55,6 +58,12 @@ export default {
         },
       });
     },
+    require('daisyui'), 
+    
   ],
+  daisyui:{
+    themes:true,
+    darkTheme:['selector', '[data-theme="night"]'],
+  }
 }
 
