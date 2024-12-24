@@ -11,6 +11,8 @@ import {
   FaCode,
   FaCuttlefish,
   FaJava,
+  FaLink,
+  FaHeart,
 } from "react-icons/fa";
 import { JokeData } from "../../JokeData";
 import Navbar from "../Navbar/Navbar";
@@ -32,20 +34,27 @@ const categories = [
 
 function JokeCategories() {
   const [selectedCategory, setSelectedCategory] = useState("Python Jokes");
-  const [visibleJokesCount, setVisibleJokesCount] = useState(3); // Track the number of visible jokes
+  const [visibleJokesCount, setVisibleJokesCount] = useState(3);
 
-  // Function to get jokes for the selected category
+  const shareJoke = (joke) => {
+    if (navigator.share) {
+      navigator.share({
+        title: "Joke",
+        text: joke,
+      });
+    } else {
+      console.log("Web Share API not supported");
+    }
+  };
   const getJokesForCategory = (category) => {
     const categoryData = JokeData.find((data) => data.category === category);
     return categoryData ? categoryData.jokes : [];
   };
 
-  // Get the jokes for the selected category
   const jokes = getJokesForCategory(selectedCategory);
 
-  // Show the next set of jokes
   const handleShowMore = () => {
-    setVisibleJokesCount((prevCount) => prevCount + 3); // Increase by 3
+    setVisibleJokesCount((prevCount) => prevCount + 3);
   };
 
   return (
@@ -57,10 +66,10 @@ function JokeCategories() {
           {categories.map((category) => (
             <button
               key={category.name}
-              className={`py-4 px-4 text-lg flex items-center space-x-2 rounded hover:opacity-90 ${
+              className={`py-4 px-4 border-2 text-lg flex items-center space-x-2 rounded hover:opacity-90 ${
                 selectedCategory === category.name
                   ? `${category.color} text-white`
-                  : "bg-gray-200 text-gray-500"
+                  : " text-gray-500"
               }`}
               onClick={() => setSelectedCategory(category.name)}
             >
@@ -71,23 +80,31 @@ function JokeCategories() {
         </div>
 
         {/* Display Jokes for the selected category */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="mt-[4rem] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {jokes.slice(0, visibleJokesCount).map((joke, index) => (
             <div
               key={index}
-              className="p-4 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white rounded-lg shadow-xl transform transition duration-300 hover:scale-105"
+              className="p-8 border-2  rounded-lg shadow-xl transform transition duration-300 hover:scale-105"
             >
-              <p>{joke}</p>
+              <p className="text-lg">{joke}</p>
+              <div className="btns-container flex gap-8 mt-6 text-lg">
+                <button className="" onClick={() => shareJoke(joke)}>
+                  <FaLink />
+                </button>
+                <button className="">
+                  <FaHeart className="text-pink-500" />{" "}
+                </button>
+              </div>
             </div>
           ))}
         </div>
 
         {/* Show More Button */}
         {visibleJokesCount < jokes.length && (
-          <div className="mt-6 text-center">
+          <div className="mt-10 text-center">
             <button
               onClick={handleShowMore}
-              className="py-2 px-6 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              className="py-2 px-6 bg-orange-500 text-white rounded-lg hover:bg-orange-600"
             >
               Show More
             </button>
