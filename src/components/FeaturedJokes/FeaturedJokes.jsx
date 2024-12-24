@@ -88,7 +88,7 @@ function FeaturedJokes() {
     featuredJokes[jokeIndex >= 0 ? jokeIndex : featuredJokes.length - 1];
 
   return (
-    <div className="featured-jokes-container my-[4rem] py-8">
+    <div className="featured-jokes-container mx-6 my-[4rem] py-8">
       <h2 className="text-3xl text-center my-[3rem] underline underline-offset-2">Featured Joke of The Day</h2>
       <div className="flex justify-center items-center">
         <div className="p-6 bg-white rounded-lg shadow-lg max-w-md text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">

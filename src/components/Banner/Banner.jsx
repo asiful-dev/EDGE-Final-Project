@@ -52,7 +52,7 @@ function Banner() {
     <>
       <div className="banner px-8 flex flex-col gap-6 md:flex-row justify-between items-center ">
         <div className="banner-txt ">
-          <h2 className="font-bold text-[4rem]">{slides[idx].heading}</h2>
+          <h2 className="font-bold text-[3rem] md:text-[4rem]">{slides[idx].heading}</h2>
           <h2 className="text-[1.5rem]">{slides[idx].subheading}</h2>
         </div>
         <div className="banner-animation">
