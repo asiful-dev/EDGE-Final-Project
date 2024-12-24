@@ -18,7 +18,11 @@ export default function Navbar() {
       </div>
 
       <ul className="nav-links font-semibold text-[1.25rem] hidden md:flex md:gap-x-4 md:items-center">
-      <input type="checkbox" value="night" className="toggle theme-controller" />
+        <input
+          type="checkbox"
+          value="night"
+          className="toggle theme-controller"
+        />
         <li>
           <Link to={"/"} className="smooth-underline">
             Home
@@ -27,6 +31,16 @@ export default function Navbar() {
         <li>
           <Link to={"/favourites"} className="smooth-underline">
             Favourites
+          </Link>
+        </li>
+        <li>
+          <Link to={"/randomjoke"} className="smooth-underline">
+            Random Joke
+          </Link>
+        </li>
+        <li>
+          <Link to={"/categories"} className="smooth-underline">
+            Categories
           </Link>
         </li>
         <li>
@@ -55,6 +69,16 @@ export default function Navbar() {
             <li>
               <Link to={"/favourites"} className="smooth-underline">
                 Favourites
+              </Link>
+            </li>
+            <li>
+              <Link to={"/randomjoke"} className="smooth-underline">
+                Random Joke
+              </Link>
+            </li>
+            <li>
+              <Link to={"/categories"} className="smooth-underline">
+                Categories
               </Link>
             </li>
             <li>
