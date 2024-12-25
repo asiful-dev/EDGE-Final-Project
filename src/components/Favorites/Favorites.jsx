@@ -53,7 +53,8 @@ function Favorites() {
                   <p className="text-lg text-gray-800 mb-4">{joke}</p>
 
                   {/* Category Badge */}
-                  <span className={`badge ${categoryColor} text-white p-2`}>
+                  <span className={`badge  ${ categoryColor? `${categoryColor} text-white`:`text-black badge-outline`
+                  }  p-2`}>
                     {category}
                   </span>
 
