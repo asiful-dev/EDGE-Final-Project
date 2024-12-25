@@ -14,9 +14,14 @@ export default {
           '0%': { width: '0%' },
           '100%': { width: '100%' },
         },
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
       },
       animation: {
         underline: 'underline 0.3s ease-in-out forwards',
+        fadeIn: 'fadeIn 1s ease-in-out',
       },
       backgroundImage: {
         'custom-gradient': 'linear-gradient(90deg, rgba(180,80,58,1) 0%, rgba(253,80,29,1) 50%, rgba(252,176,69,1) 100%)',
