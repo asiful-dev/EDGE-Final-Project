@@ -65,9 +65,18 @@ function JokeCategories() {
   };
 
   const addToFavorites = (joke) => {
-    // Add to favorites and save to localStorage
-    if (!favorites.includes(joke)) {
-      const updatedFavorites = [...favorites, joke];
+    const category = selectedCategory; // Get current category
+    const timeAdded = new Date().toISOString(); // Get the current time in ISO format
+
+    // Get category color from categories array
+    const categoryColor = categories.find((cat) => cat.name === category)?.color;
+
+    // Create a favorite item with joke, category, time, and color
+    const favoriteItem = { joke, category, timeAdded, categoryColor };
+
+    // Check if the joke is already in favorites
+    if (!favorites.some((fav) => fav.joke === joke)) {
+      const updatedFavorites = [...favorites, favoriteItem];
       setFavorites(updatedFavorites);
       localStorage.setItem("Favorites", JSON.stringify(updatedFavorites));
     }
