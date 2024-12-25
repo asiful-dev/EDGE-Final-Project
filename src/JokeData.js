@@ -51,7 +51,7 @@ export const JokeData = [
       ],
     },
     {
-      category: "AI and Machine Learning Jokes",
+      category: "AI Jokes",
       jokes: [
         "Why did the AI get fired? It couldn’t think outside the bot.",
         "Machine Learning algorithms can predict everything, except their own bugs.",
