@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaPython,
   FaJsSquare,
@@ -33,19 +33,26 @@ const categories = [
 ];
 
 function JokeCategories() {
-  const [selectedCategory, setSelectedCategory] = useState("Python Jokes");
+  const [selectedCategory, setSelectedCategory] = useState(() => {
+    // Check sessionStorage for saved category
+    const savedCategory = sessionStorage.getItem("Selected Category");
+    return savedCategory || "Python Jokes";
+  });
+
   const [visibleJokesCount, setVisibleJokesCount] = useState(3);
+  const [favorites, setFavorites] = useState(() => {
+    // Get saved favorites from localStorage
+    const savedFavorites = localStorage.getItem("Favorites");
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+  });
 
   const shareJoke = (joke) => {
-    if (navigator.share) {
-      navigator.share({
-        title: "Joke",
-        text: joke,
-      });
-    } else {
-      console.log("Web Share API not supported");
-    }
+    navigator.share({
+      title: "Joke",
+      text: joke,
+    });
   };
+
   const getJokesForCategory = (category) => {
     const categoryData = JokeData.find((data) => data.category === category);
     return categoryData ? categoryData.jokes : [];
@@ -56,6 +63,20 @@ function JokeCategories() {
   const handleShowMore = () => {
     setVisibleJokesCount((prevCount) => prevCount + 3);
   };
+
+  const addToFavorites = (joke) => {
+    // Add to favorites and save to localStorage
+    if (!favorites.includes(joke)) {
+      const updatedFavorites = [...favorites, joke];
+      setFavorites(updatedFavorites);
+      localStorage.setItem("Favorites", JSON.stringify(updatedFavorites));
+    }
+  };
+
+  // Store the selected category to sessionStorage
+  useEffect(() => {
+    sessionStorage.setItem("Selected Category", selectedCategory);
+  }, [selectedCategory]);
 
   return (
     <>
@@ -84,16 +105,22 @@ function JokeCategories() {
           {jokes.slice(0, visibleJokesCount).map((joke, index) => (
             <div
               key={index}
-              className="p-8 border-2  rounded-lg shadow-xl transform transition duration-300 hover:scale-105"
+              className="p-8 border-2 rounded-lg shadow-xl transform transition duration-300 hover:scale-105"
             >
               <p className="text-lg">{joke}</p>
-              <div className="btns-container flex gap-8 mt-6 text-lg">
-                <button className="" onClick={() => shareJoke(joke)}>
-                  <FaLink />
-                </button>
-                <button className="">
-                  <FaHeart className="text-pink-500" />{" "}
-                </button>
+              <div className="btns-container flex gap-8 mt-6 text-xl">
+                <div className="tooltip tooltip-bottom" data-tip="Share">
+                  <button onClick={() => shareJoke(joke)}>
+                    <FaLink />
+                  </button>
+                </div>
+                <div className="tooltip tooltip-bottom" data-tip="Add to favorites">
+                  <input
+                    type="checkbox"
+                    className="checkbox border-pink-600 [--chkbg:theme(colors.pink.500)] [--chkfg:white] checked:border-none"
+                    onChange={() => addToFavorites(joke)}
+                  />
+                </div>
               </div>
             </div>
           ))}
@@ -104,7 +131,10 @@ function JokeCategories() {
           <div className="mt-10 text-center">
             <button
               onClick={handleShowMore}
-              className="py-2 px-6 bg-orange-500 text-white rounded-lg hover:bg-orange-600"
+              className={`py-2 px-6 text-white rounded-lg hover:bg-opacity-90 ${
+                categories.find((category) => category.name === selectedCategory)
+                  ?.color
+              }`}
             >
               Show More
             </button>
