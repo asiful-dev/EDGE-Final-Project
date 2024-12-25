@@ -31,10 +31,7 @@ const router=createBrowserRouter([
     path:'/gifs',
     element:<Gifs/>
   },
-  {
-    path:'/developers',
-    element:<Developers/>
-  }
+
 ])
 
 createRoot(document.getElementById('root')).render(
