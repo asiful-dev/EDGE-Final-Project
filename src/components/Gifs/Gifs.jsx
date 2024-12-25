@@ -7,20 +7,30 @@ function Gifs() {
   //   console.log(api_key);
   const [gifs, setGifs] = useState([]);
   const [searchText, setSearchText] = useState("");
+  useEffect(() => {
+    const storedText = sessionStorage.getItem("Search Gif Text");
+   (storedText && setSearchText(storedText));
+  }, []);
   const fetchGifs = () => {
     fetch(
       `https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${searchText}&limit=12`
     )
       .then((res) => res.json())
-      .then((gifs) =>
-        // console.log(gifs.data[0].images.original.webp);
-        setGifs(gifs.data)
+      .then(
+        (gifs) =>
+          // console.log(gifs.data[0].images.original.webp);
+          setGifs(gifs.data)
+      
       );
   };
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       fetchGifs();
+      addToSessionStorage(searchText)
     }
+  };
+  const addToSessionStorage = (text) => {
+    sessionStorage.setItem("Search Gif Text", text);
   };
   return (
     <>
@@ -35,6 +45,7 @@ function Gifs() {
               type="text"
               className="grow"
               placeholder="Search"
+              value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               onKeyDown={handleKeyPress}
             />
