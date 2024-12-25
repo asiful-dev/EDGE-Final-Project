@@ -6,6 +6,7 @@ import Home from './components/Home/Home.jsx'
 import Gifs from './components/Gifs/Gifs.jsx'
 import JokeCategories from './components/JokeCategories/JokeCategories.jsx'
 import JokeCard from './components/JokeCard/JokeCard.jsx'
+import Favorites from './components/Favorites/Favorites.jsx'
 
 const router=createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router=createBrowserRouter([
   },
   {
     path:'/favourites',
-    element:<h2>Favourites</h2>
+    element:<Favorites/>
   },
   {
     path:'/randomjoke',
