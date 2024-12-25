@@ -9,7 +9,9 @@ function Gifs() {
   const [searchText, setSearchText] = useState("");
   useEffect(() => {
     const storedText = sessionStorage.getItem("Search Gif Text");
+    const storedGifs=sessionStorage.getItem("Search Gif Result");
    (storedText && setSearchText(storedText));
+   (storedGifs ?setGifs(JSON.parse(storedGifs)):console.log("Error!!!!"));
   }, []);
   const fetchGifs = () => {
     fetch(
@@ -19,18 +21,22 @@ function Gifs() {
       .then(
         (gifs) =>
           // console.log(gifs.data[0].images.original.webp);
-          setGifs(gifs.data)
-      
+          setGifs(gifs.data),
+          addToSessionStorage(searchText,gifs)
+
       );
   };
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       fetchGifs();
-      addToSessionStorage(searchText)
+      
     }
   };
-  const addToSessionStorage = (text) => {
+  const addToSessionStorage = (text,gifResult) => {
     sessionStorage.setItem("Search Gif Text", text);
+    // console.log(gifResult);
+    
+    sessionStorage.setItem("Search Gif Result",JSON.stringify(gifResult));
   };
   return (
     <>
