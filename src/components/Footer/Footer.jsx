@@ -24,10 +24,6 @@ function FunnyFooter() {
         {/* Team Humor */}
         <p className="text-sm">
           Developed by two developers
-          <Link to={"/developers"}>
-            {" "}
-            <button className="btn btn-sm">See us</button>
-          </Link>
           , united by bugs and late-night debugging sessions. 🐞💡
         </p>
 

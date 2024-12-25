@@ -41,12 +41,12 @@ function Gifs() {
   return (
     <>
       <Navbar />
-      <div className="Gifs-container my-8">
+      <div className="Gifs-container my-8 mx-10">
         <h2 className="text-center text-gray-500 my-8 text-4xl font-bold">
           Search <span className="text-orange-400">Gifs</span>
         </h2>
         <div className="search-container flex flex-col items-center">
-          <label className="input input-bordered  w-96 flex items-center gap-2 ">
+          <label className="input input-bordered flex items-center gap-2 md:w-96">
             <input
               type="text"
               className="grow"
@@ -60,10 +60,10 @@ function Gifs() {
             </button>
           </label>
         </div>
-        <div className="gifs-card-container my-10 grid grid-cols-1 place-items-center gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="gifs-card-container my-10 mx-6 grid grid-cols-1 place-items-center gap-6 md:grid-cols-2 lg:grid-cols-3">
           {gifs.map((gif) => (
             <div
-              className="card bg-base-100 w-96 shadow-xl rounded-lg hover:shadow-2xl transform transition-all duration-300 ease-in-out hover:scale-105"
+              className="card bg-base-100  shadow-xl rounded-lg hover:shadow-2xl transform transition-all duration-300 ease-in-out hover:scale-105 md:w-96"
               key={gif.id}
             >
               <figure className="overflow-hidden rounded-t-lg">

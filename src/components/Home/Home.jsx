@@ -3,6 +3,8 @@ import Navbar from '../Navbar/Navbar'
 import Banner from '../Banner/Banner'
 import FeaturedJokes from '../FeaturedJokes/FeaturedJokes'
 import Memes from '../Memes/Memes'
+import FunnyQuotes from '../FunnyQuotes/FunnyQuotes'
+import Footer from '../Footer/Footer'
 
 
 function Home() {
@@ -12,7 +14,8 @@ function Home() {
     <Banner/>
     <FeaturedJokes/>
     <Memes/>
-    
+    <FunnyQuotes/>
+    <Footer/>
     </>
   )
 }

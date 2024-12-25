@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
+
 export default function Navbar() {
   const [dropDown, setDropDown] = useState(false);
   const toggleDropDown = () => {
     setDropDown(!dropDown);
   };
+
   return (
-    <nav className="nav-container p-6 px-8 flex justify-between items-center relative">
+    <nav className="nav-container p-6 px-8 flex justify-between flex-wrap items-center relative">
       <div className="logo flex items-center">
         <div className="logo-img w-16">
           <img src="/src/assets/Images/logo-removebg-preview.png" alt="" />
@@ -49,40 +51,40 @@ export default function Navbar() {
           </Link>
         </li>
       </ul>
+
       <FaBars
         id="hamburger-icon"
         className="text-[1.5rem] transition duration-150 hover:text-orange-400 hover:ease-in md:hidden"
         onClick={toggleDropDown}
       ></FaBars>
+
       {dropDown && (
         <div
-          className={`dropdown-menu font-bold absolute top-[5rem] right-6 bg-white shadow-md rounded-md p-4 transition-transform duration-200 ease-in-out ${
-            dropDown ? "scale-100 opacity-100" : "scale-0 opacity-0"
-          }`}
+          className="dropdown-menu font-bold absolute top-[5rem] right-6 bg-white shadow-md rounded-md p-4"
         >
           <ul className="flex flex-col gap-y-2">
             <li>
-              <Link to={"/"} className="smooth-underline">
+              <Link to={"/"} className="smooth-underline" onClick={() => setDropDown(false)}>
                 Home
               </Link>
             </li>
             <li>
-              <Link to={"/favourites"} className="smooth-underline">
+              <Link to={"/favourites"} className="smooth-underline" onClick={() => setDropDown(false)}>
                 Favourites
               </Link>
             </li>
             <li>
-              <Link to={"/randomjoke"} className="smooth-underline">
+              <Link to={"/randomjoke"} className="smooth-underline" onClick={() => setDropDown(false)}>
                 Random Joke
               </Link>
             </li>
             <li>
-              <Link to={"/categories"} className="smooth-underline">
+              <Link to={"/categories"} className="smooth-underline" onClick={() => setDropDown(false)}>
                 Categories
               </Link>
             </li>
             <li>
-              <Link to={"/gifs"} className="smooth-underline">
+              <Link to={"/gifs"} className="smooth-underline" onClick={() => setDropDown(false)}>
                 Gifs
               </Link>
             </li>

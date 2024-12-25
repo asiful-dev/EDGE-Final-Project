@@ -7,6 +7,7 @@ import Gifs from './components/Gifs/Gifs.jsx'
 import JokeCategories from './components/JokeCategories/JokeCategories.jsx'
 import JokeCard from './components/JokeCard/JokeCard.jsx'
 import Favorites from './components/Favorites/Favorites.jsx'
+import Developers from './components/Developers/Developers.jsx'
 
 const router=createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router=createBrowserRouter([
   {
     path:'/gifs',
     element:<Gifs/>
+  },
+  {
+    path:'/developers',
+    element:<Developers/>
   }
 ])
 
