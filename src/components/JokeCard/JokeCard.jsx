@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Navbar from "../Navbar/Navbar";
+import { FaLink } from "react-icons/fa";
 function JokeCard() {
   const [joke, setJoke] = useState({});
   const [visibleCard, setVisibleCard] = useState("single");
@@ -80,27 +81,60 @@ function JokeCard() {
   };
 
   const shareJoke = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: "Funny Joke",
-        text:
-          visibleCard === "single"
-            ? joke.joke
-            : `${joke.setup} - ${joke.delivery}`,
-      });
-    } else {
-      alert("Sharing is not supported on this browser.");
-    }
+    navigator.share({
+      title: "Funny Joke",
+      text:
+        visibleCard === "single"
+          ? joke.joke
+          : `${joke.setup} - ${joke.delivery}`,
+    });
+  };
+  const addToFavorites = (joke) => {
+    // Get the existing favorites from localStorage
+    const favorites = JSON.parse(localStorage.getItem("Favorites")) || [];
+
+    // Create a new favorite joke object with additional properties
+    const newFavorite = {
+      id: joke.id,
+      joke: joke.joke || joke.setup + " - " + joke.delivery, // Handle both single and two-part jokes
+      category: "Random Joke", // You can adjust the category as per the joke type or other criteria
+      timeAdded: new Date().toISOString(), // Add the time when the joke was added
+    };
+    favorites.push(newFavorite);
+    localStorage.setItem("Favorites", JSON.stringify(favorites));
+    
   };
 
   return (
     <>
       <Navbar />
+      <div className="introduction m-6 p-6 rounded-lg shadow-lg text-center transform transition-all duration-1000 ease-in-out animate-fadeIn">
+        <div className="intro-txt">
+          <h2 className="text-3xl font-extrabold mb-6  animate__fadeIn">
+            Need a laugh? 🤔 We've got you covered! 😆
+          </h2>
+          <p className="text-lg  mb-4 animate__fadeIn animate-delay-500">
+            Whether you're in the mood for a{" "}
+            <span className="font-semibold">quick one-liner</span> that'll make
+            you smile instantly, or you're feeling adventurous and want to dive
+            into a <span className="font-semibold">two-part joke</span> that'll
+            have you rolling on the floor,{" "}
+            <span className="font-bold text-yellow-400">
+              we've got something for every humor level!
+            </span>
+          </p>
+          <p className="text-md  animate__fadeIn animate-delay-1000">
+            Ready to laugh? Just hit one of the buttons below, and let the jokes
+            choose you! Or, you know, choose wisely... but no pressure! 😜
+          </p>
+        </div>
+      </div>
+
       <div className="joke-container my-[3rem] flex flex-col items-center gap-6 mx-6">
         <div className="btn-container flex flex-col gap-4 mb-10 md:flex-row">
           <button
             onClick={() => fetchJoke("single")}
-            className="btn bg-custom-gradient text-white font-semibold px-6 py-3 rounded-lg text-[1.5rem] transition-all duration-500 hover:bg-custom-gradient-hover hover:scale-105"
+            className="btn text-white bg-custom-gradient  font-semibold px-6 py-3 rounded-lg text-[1.5rem] transition-all duration-500 hover:bg-custom-gradient-hover hover:scale-105"
           >
             Get Single Part Joke
           </button>
@@ -118,19 +152,22 @@ function JokeCard() {
             <p className="joke-single text-[1.5rem] text-center">
               {joke.joke} <span className="text-[1.5rem]">{randomEmoji}</span>
             </p>
-            <div className="mt-6 flex gap-4 justify-end">
-              <button onClick={shareJoke} className="text-3xl hover:scale-110 ">
-                🔗
-              </button>
-              <label className="text-3xl hover:scale-110 ">
+            <div className="btns-container flex gap-8 mt-6 text-xl">
+              <div className="tooltip tooltip-bottom" data-tip="Share">
+                <button onClick={() => shareJoke(joke)}>
+                  <FaLink />
+                </button>
+              </div>
+              <div
+                className="tooltip tooltip-bottom"
+                data-tip="Add to favorites"
+              >
                 <input
                   type="checkbox"
-                  checked={isFavorite}
-                  onChange={toggleFavorite}
-                  className="hidden"
+                  className="checkbox border-pink-600 [--chkbg:theme(colors.pink.500)] [--chkfg:white] checked:border-none"
+                  onChange={() => addToFavorites(joke)}
                 />
-                💗
-              </label>
+              </div>
             </div>
           </div>
         )}
@@ -144,19 +181,22 @@ function JokeCard() {
             <p className="joke-punchline text-[1.5rem] text-gray-600 text-center">
               {joke.delivery} <span className="text-2xl">{randomEmoji}</span>
             </p>
-            <div className="mt-6 flex gap-4 justify-end">
-              <button onClick={shareJoke} className="text-3xl hover:scale-110 ">
-                🔗
-              </button>
-              <label className="text-3xl hover:scale-110 ">
+            <div className="btns-container flex justify-end gap-8 mt-6 text-xl">
+              <div className="tooltip tooltip-bottom" data-tip="Share">
+                <button onClick={() => shareJoke(joke)}>
+                  <FaLink />
+                </button>
+              </div>
+              <div
+                className="tooltip tooltip-bottom"
+                data-tip="Add to favorites"
+              >
                 <input
                   type="checkbox"
-                  checked={isFavorite}
-                  onChange={toggleFavorite}
-                  className="hidden"
+                  className="checkbox border-pink-600 [--chkbg:theme(colors.pink.500)] [--chkfg:white] checked:border-none"
+                  onChange={() => addToFavorites(joke)}
                 />
-                💗
-              </label>
+              </div>
             </div>
           </div>
         )}
