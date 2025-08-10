@@ -1,4 +1,4 @@
-# ![Jokes Overflow Logo](/src/assets/Images/logo-removebg-preview.png) Jokes Overflow
+# ![Jokes Overflow Logo](/Images/logo-removebg-preview.png) Jokes Overflow
 
 **Jokes Overflow** is a fun and interactive web application designed to bring humor to developers and programming enthusiasts. The app provides a dynamic collection of jokes, memes, and gifs related to the world of programming, along with features that allow users to save their favorite jokes, share them, and explore jokes categorized by different programming languages and technologies.
 
