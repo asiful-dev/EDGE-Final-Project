@@ -1,40 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 function FunnyFooter() {
   return (
-    <footer className="bg-gray-800 text-white py-8 mt-12 px-6">
-      <div className="text-center space-y-6">
+    <footer className="bg-gray-800 text-white py-12 mt-12 px-6">
+      <div className="max-w-4xl mx-auto text-center space-y-8">
         {/* Logo Section */}
         <div>
-          <img
-            src="/src/assets/Images/logo-removebg-preview.png"
-            alt="Project Logo"
-            className="w-20 h-20 mx-auto"
-          />
-          <p className="text-sm mt-2">Jokes Overflow™</p>
+          <div className="bg-gray-700 rounded-full p-3 w-24 h-24 mx-auto flex items-center justify-center mb-3">
+            <img
+              src="/Images/logo-removebg-preview.png"
+              alt="Project Logo"
+              className="w-16 h-16"
+            />
+          </div>
+          <h3 className="text-xl font-semibold">Jokes Overflow™</h3>
         </div>
 
-        {/* Fun Text */}
-        <p className="text-lg">
-          Built with 💻, 🍕, and twice the caffeine since there are two of us.
-          ☕☕
-        </p>
-
-        {/* Team Humor */}
-        <p className="text-sm">
-          Developed by two developers
-          , united by bugs and late-night debugging sessions. 🐞💡
-        </p>
-
-        {/* Additional Fun Text */}
-        <p className="text-sm italic">
-          “There’s no place like 127.0.0.1.” — A Very Grounded Team 🌍
-        </p>
-        <p className="text-xs">
-          © {new Date().getFullYear()} Your Project Name. All rights ignored,
-          just like our bug reports. 🛠️
-        </p>
+        {/* Copyright */}
+        <div className="border-t border-gray-600 pt-6">
+          <p className="text-sm text-gray-400">
+            © {new Date().getFullYear()} Your Project Name. All rights ignored, just like our bug reports. 🛠️
+          </p>
+        </div>
       </div>
     </footer>
   );
