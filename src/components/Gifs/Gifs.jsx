@@ -93,6 +93,7 @@ function Gifs() {
           ))}
         </div>
       </div>
+    
     </>
   );
 }
