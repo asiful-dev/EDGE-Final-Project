@@ -19,7 +19,7 @@ function Favorites() {
     );
     setFavorites(updatedFavorites);
     // Update localStorage
-    localStorage.setItem("Favorites", JSON.stringify(updatedFavorites));
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
   const shareJoke = (joke) => {
     navigator.share({
